@@ -1,6 +1,7 @@
 # hdm-wim-fallstudie-cep
 
 *Hinweis: Bei diesem Projekt handelt es sich um ein Forschungsprojekt der Hochschule der Medien, Stuttgart.*
+*Das Hauptprojekt findet man [hier](https://github.com/Purii/hdm-wim-fallstudie-cep).*
 
 ## Installation von Maven
  1. in Windows: Pfad zum JDK unter "JAVA_HOME" als Umgebungsvariable anlegen.
