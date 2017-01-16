@@ -5,6 +5,7 @@
 
 ## IntelliJ
 [Link zum download](https://www.jetbrains.com/idea/)
+
 1. Import projects from existing sources
 2. select pom file
 3. import
