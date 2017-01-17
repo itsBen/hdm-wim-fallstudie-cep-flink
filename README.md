@@ -1,6 +1,18 @@
 # hdm-wim-fallstudie-cep
 
 *Hinweis: Bei diesem Projekt handelt es sich um ein Forschungsprojekt der Hochschule der Medien, Stuttgart.*
+*Das Hauptprojekt findet man [hier](https://github.com/Purii/hdm-wim-fallstudie-cep).*
+
+## IntelliJ
+[Link zum download](https://www.jetbrains.com/idea/)
+
+1. Import projects from existing sources
+2. select pom file
+3. import
+4. project -> maven -> Generate Sources and Update folders
+5. IntelliJ Settings -> Build, Execution, Deployment -> Compiler -> Java Compiler, Set compiler to "Eclipse" and bytecode to 1.8
+6. Project Structure -> Project -> set Project Language level to 8
+7. Project Structure -> Modules -> Sources -> set Language level to 8
 
 ## Installation von Maven
  1. in Windows: Pfad zum JDK unter "JAVA_HOME" als Umgebungsvariable anlegen.
