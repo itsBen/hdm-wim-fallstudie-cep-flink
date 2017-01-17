@@ -18,22 +18,12 @@
 
 package org.stsffap.cep.monitoring;
 
-import org.apache.flink.cep.CEP;
-import org.apache.flink.cep.PatternStream;
-import org.apache.flink.cep.pattern.Pattern;
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.IngestionTimeExtractor;
-import org.apache.flink.streaming.api.windowing.time.Time;
-import org.apache.flink.util.Collector;
-import org.stsffap.cep.monitoring.sources.MonitoringEventSource;
 import org.stsffap.cep.monitoring.events.MonitoringEvent;
-import org.stsffap.cep.monitoring.events.TemperatureEvent;
-import org.stsffap.cep.monitoring.events.TemperatureAlert;
-import org.stsffap.cep.monitoring.events.TemperatureWarning;
-
-import java.util.Map;
+import org.stsffap.cep.monitoring.sources.MonitoringEventSource;
 
 /**
  * CEP example monitoring program
@@ -76,6 +66,8 @@ public class CEPMonitoring {
                         TEMP_MEAN))
                 .assignTimestampsAndWatermarks(new IngestionTimeExtractor<>());
 
+
+        /*
         // Warning pattern: Two consecutive temperature events whose temperature is higher than the given threshold
         // appearing within a time interval of 10 seconds
         Pattern<MonitoringEvent, ?> warningPattern = Pattern.<MonitoringEvent>begin("first")
@@ -126,6 +118,9 @@ public class CEPMonitoring {
         // Print the warning and alert events to stdout
         warnings.print();
         alerts.print();
+
+        */
+        inputEventStream.print();
 
         env.execute("CEP monitoring job");
     }
