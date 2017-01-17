@@ -36,4 +36,10 @@ If the system should detect two temperature warnings for the same rack and with 
  
  SOURCE: https://github.com/tillrohrmann/cep-monitoring
  
+ ## hdm.wim.CEPSpeechTokens
+ Um den Test auszuführen:
+ - Sicherstellen, dass in der pom.xml die Zeile ´<mainClass>de.hdm.wim.CEPSpeechTokens</mainClass>´ nicht auskommentiert ist, die andere ´mainClass´ sollte auskommentiert sein
+ - Beim Fehler mit dem ´.classpath´ das Projekt mit ´mvn clean package´ bereinigen
+ 
+ 
 
