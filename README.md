@@ -1,7 +1,7 @@
 # hdm-wim-fallstudie-cep
 
 *Hinweis: Bei diesem Projekt handelt es sich um ein Forschungsprojekt der Hochschule der Medien, Stuttgart.*
-*Das Hauptprojekt findet man [hier](https://github.com/Purii/hdm-wim-fallstudie-cep).*
+*Das Hauptprojekt ist [hier](https://github.com/Purii/hdm-wim-fallstudie-cep) zu finden.*
 
 ## IntelliJ
 [Link zum download](https://www.jetbrains.com/idea/)
