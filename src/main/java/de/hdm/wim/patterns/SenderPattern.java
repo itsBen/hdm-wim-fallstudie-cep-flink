@@ -12,6 +12,12 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  */
 public class SenderPattern {
 
+    /**
+     * Run.
+     *
+     * @param env           the env
+     * @param messageStream the message stream
+     */
     public void run(StreamExecutionEnvironment env, DataStream<MessageEvent> messageStream ) {
 
         Pattern<MessageEvent, ?> senderPattern = Pattern

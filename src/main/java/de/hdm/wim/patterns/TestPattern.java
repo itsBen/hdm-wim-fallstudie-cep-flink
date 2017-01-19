@@ -12,6 +12,12 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  */
 public class TestPattern {
 
+    /**
+     * Run.
+     *
+     * @param env           the env
+     * @param messageStream the message stream
+     */
     public void run(StreamExecutionEnvironment env, DataStream<MessageEvent> messageStream ) {
 
         // Match all event with MessageId = 1
