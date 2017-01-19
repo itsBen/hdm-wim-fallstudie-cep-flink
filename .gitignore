@@ -16,3 +16,4 @@ hs_err_pid*
 .settings/
 target/
 .idea/
+/src/main/java/org/stsffap/cep/monitoring/
