@@ -9,10 +9,10 @@ import java.util.List;
  */
 public class Message {
 
-    private String message;
+    public String message;
     public List<String> tokens = new ArrayList<String>();
-    private Participant sender;
-    private LocalDateTime timestamp;
+    public Participant sender;
+    public LocalDateTime timestamp;
 
     public Message(List<String> tokens, Participant sender, LocalDateTime timestamp) {
         this.tokens = tokens;
