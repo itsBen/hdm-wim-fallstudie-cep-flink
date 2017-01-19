@@ -23,23 +23,25 @@
  
  
 
-## cep-monitoring
-Apache Flink CEP program to monitor rack temperatures in a data center
-
-The Flink program monitors an incoming stream of monitor events from a data center.
-The input stream contains events about the temperature and power consumption of the individual racks.
-Whenever two temperature events occur within a given interval which exceed a certain threshold temperature, a warning will be raised.
-If the system should detect two temperature warnings for the same rack and with increasing temperatures, the system will generate an alert for this rack.
-
-*Note:* This program contains Java 8 lambdas.
- In order to run it directly from within IntelliJ you first have to build the project on the command line using Maven `mvn clean package`.
- 
- SOURCE: https://github.com/tillrohrmann/cep-monitoring
- 
- ## hdm.wim.CEPSpeechTokens
+## hdm.wim.CEPSpeechTokens 
  Um den Test auszuführen:
  - Sicherstellen, dass in der pom.xml die Zeile ´<mainClass>de.hdm.wim.CEPSpeechTokens</mainClass>´ nicht auskommentiert ist, die andere ´mainClass´ sollte auskommentiert sein
  - Beim Fehler mit dem ´.classpath´ das Projekt mit ´mvn clean package´ bereinigen
  
+Wenn der folgende Fehler auftritt, muss das package  mit `mvn clean package` neu gebuildet werden.
+`Exception in thread "main" org.apache.flink.api.common.functions.InvalidTypesException: The generic type parameters of 'Map' are missing. 
+It seems that your compiler has not stored them into the .class file. 
+Currently, only the Eclipse JDT compiler preserves the type information necessary to use the lambdas feature type-safely. 
+See the documentation for more information about how to compile jobs containing lambda expressions.
+	at org.apache.flink.api.java.typeutils.TypeExtractor.validateLambdaGenericParameter(TypeExtractor.java:1316)
+	at org.apache.flink.api.java.typeutils.TypeExtractor.validateLambdaGenericParameters(TypeExtractor.java:1302)
+	at org.apache.flink.api.java.typeutils.TypeExtractor.getUnaryOperatorReturnType(TypeExtractor.java:346)
+	at org.apache.flink.cep.PatternStream.select(PatternStream.java:64)
+	at de.hdm.wim.CEPSpeechTokens.main(CEPSpeechTokens.java:68)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)`
  
 
