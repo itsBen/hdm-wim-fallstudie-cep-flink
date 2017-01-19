@@ -1,5 +1,7 @@
 package de.hdm.wim.classes;
 
+import de.hdm.wim.events.MessageEvent;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,11 +11,11 @@ import java.util.List;
  */
 public class Chat {
 
-    private static LocalDateTime chatStart;
-    private static LocalDateTime chatEnd;
+    private LocalDateTime chatStart;
+    private LocalDateTime chatEnd;
 
     private List<Participant> participants = new ArrayList<Participant>();
-    public List<Message> messages = new ArrayList<Message>();
+    public List<MessageEvent> messages = new ArrayList<MessageEvent>();
 
     /**
      * Gets chat start.
@@ -74,7 +76,7 @@ public class Chat {
      *
      * @return the messages
      */
-    public List<Message> getMessages() {
+    public List<MessageEvent> getMessages() {
         return messages;
     }
 
@@ -83,7 +85,7 @@ public class Chat {
      *
      * @param message the message
      */
-    public void addMessage(Message message) {
+    public void addMessage(MessageEvent message) {
         this.messages.add(message);
     }
 }
