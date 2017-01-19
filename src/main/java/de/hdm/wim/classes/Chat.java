@@ -15,6 +15,9 @@ public class Chat {
     private LocalDateTime chatEnd;
 
     private List<Participant> participants = new ArrayList<Participant>();
+    /**
+     * The Messages.
+     */
     public List<MessageEvent> messages = new ArrayList<MessageEvent>();
 
     /**
@@ -29,7 +32,7 @@ public class Chat {
     /**
      * Sets chat start.
      *
-     * @param chatStart the chat start
+     * @param chatStart start of the chat
      */
     public void setChatStart(LocalDateTime chatStart) {
         this.chatStart = chatStart;
@@ -38,23 +41,23 @@ public class Chat {
     /**
      * Gets chat end.
      *
-     * @return the chat end
+     * @return the end of the chat
      */
     public LocalDateTime getChatEnd() {
         return chatEnd;
     }
 
     /**
-     * Sets chat end.
+     * Sets chat end (DateTime).
      *
-     * @param chatEnd the chat end
+     * @param chatEnd the end of the chat
      */
     public void setChatEnd(LocalDateTime chatEnd) {
         this.chatEnd = chatEnd;
     }
 
     /**
-     * Gets participants.
+     * Gets list of all the participants.
      *
      * @return the participants
      */
@@ -63,7 +66,7 @@ public class Chat {
     }
 
     /**
-     * Add participants.
+     * Add participant to chat.
      *
      * @param participant the participant
      */
@@ -72,7 +75,7 @@ public class Chat {
     }
 
     /**
-     * Gets messages.
+     * Gets a list of messages.
      *
      * @return the messages
      */
@@ -81,9 +84,9 @@ public class Chat {
     }
 
     /**
-     * Add message.
+     * Add a new message object to the messages.
      *
-     * @param message the message
+     * @param message the message to add
      */
     public void addMessage(MessageEvent message) {
         this.messages.add(message);
