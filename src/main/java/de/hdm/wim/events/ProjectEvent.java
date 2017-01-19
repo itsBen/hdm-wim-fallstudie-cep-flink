@@ -12,15 +12,34 @@ public class ProjectEvent extends MessageEvent {
 
     private String _projectName;
 
+    /**
+     * Instantiates a new Project event.
+     *
+     * @param tokens      the tokens
+     * @param sender      the sender
+     * @param timestamp   the timestamp
+     * @param projectName the project name
+     * @param messageId   the message id
+     */
     public ProjectEvent(List<String> tokens, Participant sender, LocalDateTime timestamp, String projectName, int messageId) {
         super(tokens, sender, timestamp, messageId);
         this._projectName = projectName;
     }
 
+    /**
+     * Gets project name.
+     *
+     * @return the project name
+     */
     public String getProjectName() {
         return _projectName;
     }
 
+    /**
+     * Sets project name.
+     *
+     * @param projectName the project name
+     */
     public void setProjectName(String projectName) {
         this._projectName = projectName;
     }

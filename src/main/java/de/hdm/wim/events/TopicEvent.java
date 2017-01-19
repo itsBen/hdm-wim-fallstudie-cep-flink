@@ -12,16 +12,35 @@ public class TopicEvent extends MessageEvent {
 
     private String _topic;
 
+    /**
+     * Instantiates a new Topic event.
+     *
+     * @param tokens    the tokens
+     * @param sender    the sender
+     * @param timestamp the timestamp
+     * @param topic     the topic
+     * @param messageId the message id
+     */
     public TopicEvent(List<String> tokens, Participant sender, LocalDateTime timestamp, String topic, int messageId) {
 
         super(tokens, sender, timestamp, messageId);
         this._topic = topic;
     }
 
+    /**
+     * Gets topic.
+     *
+     * @return the topic
+     */
     public String getTopic() {
         return _topic;
     }
 
+    /**
+     * Sets topic.
+     *
+     * @param topic the topic
+     */
     public void setTopic(String topic) {
         this._topic = topic;
     }

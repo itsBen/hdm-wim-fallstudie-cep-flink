@@ -13,15 +13,34 @@ public class DateEvent extends MessageEvent {
 
     private LocalDate _date;
 
+    /**
+     * Instantiates a new Date event.
+     *
+     * @param tokens    the tokens
+     * @param sender    the sender
+     * @param timestamp the timestamp
+     * @param date      the date
+     * @param messageId the message id
+     */
     public DateEvent(List<String> tokens, Participant sender, LocalDateTime timestamp, LocalDate date, int messageId) {
         super(tokens, sender, timestamp, messageId);
         this._date = date;
     }
 
+    /**
+     * Gets date.
+     *
+     * @return the date
+     */
     public LocalDate getDate() {
         return _date;
     }
 
+    /**
+     * Sets date time.
+     *
+     * @param date the date
+     */
     public void setDateTime(LocalDate date) {
         this._date = date;
     }

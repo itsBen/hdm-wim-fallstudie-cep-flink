@@ -13,16 +13,35 @@ public class TimeEvent extends MessageEvent {
 
     private LocalTime _time;
 
+    /**
+     * Instantiates a new Time event.
+     *
+     * @param tokens    the tokens
+     * @param sender    the sender
+     * @param timestamp the timestamp
+     * @param time      the time
+     * @param messageId the message id
+     */
     public TimeEvent(List<String> tokens, Participant sender, LocalDateTime timestamp, LocalTime time, int messageId) {
 
         super(tokens, sender, timestamp, messageId);
         this._time = time;
     }
 
+    /**
+     * Gets time.
+     *
+     * @return the time
+     */
     public LocalTime getTime() {
         return _time;
     }
 
+    /**
+     * Sets time.
+     *
+     * @param time the time
+     */
     public void setTime(LocalTime time) {
         this._time = time;
     }

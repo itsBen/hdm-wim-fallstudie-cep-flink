@@ -10,6 +10,14 @@ import java.util.List;
  */
 public class SenderEvent extends MessageEvent {
 
+    /**
+     * Instantiates a new Sender event.
+     *
+     * @param tokens    the tokens
+     * @param sender    the sender
+     * @param timestamp the timestamp
+     * @param messageId the message id
+     */
     public SenderEvent(List<String> tokens, Participant sender, LocalDateTime timestamp, int messageId) {
         super(tokens, sender, timestamp, messageId);
     }
