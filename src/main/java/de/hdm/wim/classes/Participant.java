@@ -13,6 +13,8 @@ public class Participant {
         this.lastName = lastName;
     }
 
+    public Participant(){}
+
     public String getFirstName() {
         return firstName;
     }
