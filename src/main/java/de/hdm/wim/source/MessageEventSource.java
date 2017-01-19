@@ -1,8 +1,8 @@
 package de.hdm.wim.source;
 
 import de.hdm.wim.classes.Chat;
-import de.hdm.wim.classes.Message;
 import de.hdm.wim.classes.Participant;
+import de.hdm.wim.events.MessageEvent;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 
 import java.time.LocalDateTime;
@@ -12,12 +12,12 @@ import java.util.List;
 /**
  * Created by Ben on 15.01.2017.
  */
-public class EventSource implements SourceFunction<List<List<String>>> {
+public class MessageEventSource implements SourceFunction<MessageEvent> {
 
     private volatile boolean isRunning = true;
 
     @Override
-    public void run(SourceContext<List<List<String>>> sourceContext) throws Exception {
+    public void run(SourceContext<MessageEvent> sourceContext) throws Exception {
 
         // set up 2 participants
         final Participant participant1 = new Participant("Mike", "Turbo");
@@ -45,45 +45,26 @@ public class EventSource implements SourceFunction<List<List<String>>> {
         chat.addParticipant(participant1);
         chat.addParticipant(participant2);
 
-        chat.addMessage(new Message(tokens0, participant1, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens1, participant2, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens2, participant1, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens3, participant2, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens4, participant1, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens5, participant2, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens6, participant1, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens7, participant2, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens8, participant1, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens9, participant2, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens10, participant1, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens11, participant2, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens12, participant1, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens13, participant2, LocalDateTime.now()));
-        chat.addMessage(new Message(tokens14, participant1, LocalDateTime.now()));
-
-
-        List<List<String>> tokenss = Arrays.asList(
-                tokens0,
-                tokens1,
-                tokens2,
-                tokens3,
-                tokens4,
-                tokens5,
-                tokens6,
-                tokens7,
-                tokens8,
-                tokens9,
-                tokens10,
-                tokens11,
-                tokens12,
-                tokens13,
-                tokens14
-        );
-
+        chat.addMessage(new MessageEvent(tokens0, participant1, LocalDateTime.now(),0));
+        chat.addMessage(new MessageEvent(tokens1, participant2, LocalDateTime.now(),1));
+        chat.addMessage(new MessageEvent(tokens2, participant1, LocalDateTime.now(),2));
+        chat.addMessage(new MessageEvent(tokens3, participant2, LocalDateTime.now(),3));
+        chat.addMessage(new MessageEvent(tokens4, participant1, LocalDateTime.now(),4));
+        chat.addMessage(new MessageEvent(tokens5, participant2, LocalDateTime.now(),5));
+        chat.addMessage(new MessageEvent(tokens6, participant1, LocalDateTime.now(),6));
+        chat.addMessage(new MessageEvent(tokens7, participant2, LocalDateTime.now(),7));
+        chat.addMessage(new MessageEvent(tokens8, participant1, LocalDateTime.now(),8));
+        chat.addMessage(new MessageEvent(tokens9, participant2, LocalDateTime.now(),9));
+        chat.addMessage(new MessageEvent(tokens10, participant1, LocalDateTime.now(),10));
+        chat.addMessage(new MessageEvent(tokens11, participant2, LocalDateTime.now(),11));
+        chat.addMessage(new MessageEvent(tokens12, participant1, LocalDateTime.now(),12));
+        chat.addMessage(new MessageEvent(tokens13, participant2, LocalDateTime.now(),13));
+        chat.addMessage(new MessageEvent(tokens14, participant1, LocalDateTime.now(),15));
 
         int count = 0;
-        while (isRunning && count < 100) {
-            sourceContext.collect(tokenss);
+
+        while (isRunning && count < chat.messages.size()) {
+            sourceContext.collect(chat.messages.get(count));
             count++;
         }
     }
