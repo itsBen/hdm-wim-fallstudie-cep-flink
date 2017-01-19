@@ -25,8 +25,8 @@
 
 ## hdm.wim.CEPSpeechTokens 
  Um den Test auszuführen:
- - Sicherstellen, dass in der pom.xml die Zeile ´<mainClass>de.hdm.wim.CEPSpeechTokens</mainClass>´ nicht auskommentiert ist, die andere ´mainClass´ sollte auskommentiert sein
- - Beim Fehler mit dem ´.classpath´ das Projekt mit ´mvn clean package´ bereinigen
+ - Sicherstellen, dass in der pom.xml die Zeile `<mainClass>de.hdm.wim.CEPSpeechTokens</mainClass>` nicht auskommentiert ist, die andere `mainClass` sollte auskommentiert sein
+ - Beim Fehler mit dem `.classpath` das Projekt mit ´mvn clean package´ bereinigen
  
 Wenn der folgende Fehler auftritt, muss das package  mit `mvn clean package` neu gebuildet werden.
 `Exception in thread "main" org.apache.flink.api.common.functions.InvalidTypesException: The generic type parameters of 'Map' are missing. 
