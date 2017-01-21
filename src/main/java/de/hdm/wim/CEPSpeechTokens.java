@@ -1,9 +1,11 @@
 package de.hdm.wim;
 
 import de.hdm.wim.events.MessageEvent;
-import de.hdm.wim.patterns.SenderPattern;
-import de.hdm.wim.patterns.TestPattern;
-import de.hdm.wim.source.MessageEventSource;
+import de.hdm.wim.cep.patterns.RelationToDatePattern;
+import de.hdm.wim.cep.patterns.SenderPattern;
+import de.hdm.wim.cep.patterns.TestPattern;
+import de.hdm.wim.cep.source.MessageEventSource;
+import de.hdm.wim.cep.source.TokenSource;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
@@ -24,10 +26,15 @@ public class CEPSpeechTokens {
             env.setParallelism(1); // set Parallelism to 1 Task, to get chat order right
 
             MessageEventSource evtSrc = new MessageEventSource();
+            TokenSource tknSrc = new TokenSource();
 
             // create a DataStream of MessageEvent from our source
             DataStream<MessageEvent> messageStream = env
                     .addSource(evtSrc);
+
+            // create a DataStream of String from our tokenSource
+            DataStream<String> tokenStream = env
+                    .addSource(tknSrc);
 
 
             TestPattern testPattern = new TestPattern();
@@ -36,39 +43,12 @@ public class CEPSpeechTokens {
             SenderPattern senderPattern = new SenderPattern();
             senderPattern.run(env,messageStream);
 
+            RelationToDatePattern relationToDatePattern = new RelationToDatePattern();
+            relationToDatePattern.run(env, tokenStream);
 
-            /*
-            // Warning pattern: Two consecutive temperature events whose temperature is higher than the given threshold
-            // appearing within a time interval of 10 seconds
-            Pattern<MessageEvent, ?> projectPattern = Pattern.<MessageEvent>begin("first")
-                    .subtype( ProjectEvent.class )
-                    .where( evt -> evt.getTokens().contains("concerning") );
-                            //.stream()
-                            //.anyMatch( token -> token.equals("concerning") )
-                    //);
-//                            .anyMatch( token -> (token.equals("concerning") || token.equals("regarding") ) && token.equals("project") ));
-
-            // Create a pattern stream from our project pattern
-            PatternStream<MessageEvent> projectPatternStream = CEP.pattern(
-                    messageStream.keyBy("_messageId"),
-                    projectPattern);
-
-            // Generate ProjectEvents for each matched project pattern
-            DataStream<ProjectEvent> projectStream = projectPatternStream.select(
-                    (Map<String, MessageEvent> pattern) -> {
-                        ProjectEvent projectEvent = (ProjectEvent) pattern.get("first");
-
-                        return projectEvent;
-                    }
-            );
-
-            // print to stdout
-            //projectStream.print();
-
-
-*/
             // print message stream
-            messageStream.print();
+            //messageStream.print();
+            tokenStream.print();
 
 
             env.execute("CEP chat stream job");
