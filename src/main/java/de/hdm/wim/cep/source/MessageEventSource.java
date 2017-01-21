@@ -1,4 +1,4 @@
-package de.hdm.wim.source;
+package de.hdm.wim.cep.source;
 
 import de.hdm.wim.classes.Chat;
 import de.hdm.wim.classes.Participant;
