@@ -1,4 +1,4 @@
-package de.hdm.wim.patterns;
+package de.hdm.wim.cep.patterns;
 
 import de.hdm.wim.events.MessageEvent;
 import org.apache.flink.cep.CEP;
@@ -16,9 +16,9 @@ public class SenderPattern {
      * Run.
      *
      * @param env           the env
-     * @param messageStream the message stream
+     * @param senderStream the message stream
      */
-    public void run(StreamExecutionEnvironment env, DataStream<MessageEvent> messageStream ) {
+    public void run(StreamExecutionEnvironment env, DataStream<MessageEvent> senderStream ) {
 
         Pattern<MessageEvent, ?> senderPattern = Pattern
                 .<MessageEvent>begin("first")
@@ -26,8 +26,7 @@ public class SenderPattern {
 
         // Create a pattern stream from our project pattern
         PatternStream<MessageEvent> senderPatternStream = CEP.pattern(
-                //messageStream.keyBy("_messageId"),
-                messageStream,
+                senderStream,
                 senderPattern);
 
 //            // Generate ProjectEvents for each matched project pattern
