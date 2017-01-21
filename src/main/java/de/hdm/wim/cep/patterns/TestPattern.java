@@ -1,4 +1,4 @@
-package de.hdm.wim.patterns;
+package de.hdm.wim.cep.patterns;
 
 import de.hdm.wim.events.MessageEvent;
 import org.apache.flink.cep.CEP;
