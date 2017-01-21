@@ -14,13 +14,13 @@ import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
  */
 public class CEPSpeechTokens {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     * @throws Exception the exception
-     */
-    public static void main(String[] args) throws Exception {
+        /**
+         * The entry point of application.
+         *
+         * @param args the input arguments
+         * @throws Exception the exception
+         */
+        public static void main(String[] args) throws Exception {
 
             final StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironment();
             env.setParallelism(1); // set Parallelism to 1 Task, to get chat order right
