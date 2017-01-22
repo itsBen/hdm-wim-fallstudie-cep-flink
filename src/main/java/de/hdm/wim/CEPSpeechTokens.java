@@ -51,7 +51,6 @@ public class CEPSpeechTokens {
             //messageStream.print();
             tokenStream.print();
 
-
             env.execute("CEP chat stream job");
         }
 }
