@@ -48,8 +48,8 @@ public class CEPSpeechTokens {
             relationToDatePattern.run(env, tokenStream);
 
             // print message stream
-            //messageStream.print();
-            tokenStream.print();
+            messageStream.print();
+            //tokenStream.print();
 
             env.execute("CEP chat stream job");
         }
