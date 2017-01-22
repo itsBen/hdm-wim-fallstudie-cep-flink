@@ -1,4 +1,4 @@
-package de.hdm.wim.events;
+package de.hdm.wim.cep.events;
 
 import com.google.gson.Gson;
 
