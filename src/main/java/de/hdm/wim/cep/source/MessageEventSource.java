@@ -2,7 +2,7 @@ package de.hdm.wim.cep.source;
 
 import de.hdm.wim.classes.Chat;
 import de.hdm.wim.classes.Participant;
-import de.hdm.wim.events.MessageEvent;
+import de.hdm.wim.cep.events.MessageEvent;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 
 import java.time.LocalDateTime;
