@@ -1,6 +1,6 @@
 package de.hdm.wim.cep.patterns;
 
-import de.hdm.wim.events.MessageEvent;
+import de.hdm.wim.cep.events.MessageEvent;
 import org.apache.flink.cep.CEP;
 import org.apache.flink.cep.PatternStream;
 import org.apache.flink.cep.pattern.Pattern;
