@@ -1,6 +1,6 @@
 package de.hdm.wim.cep.patterns;
 
-import de.hdm.wim.events.MessageEvent;
+import de.hdm.wim.cep.events.MessageEvent;
 import org.apache.flink.cep.CEP;
 import org.apache.flink.cep.PatternStream;
 import org.apache.flink.cep.pattern.Pattern;
@@ -22,23 +22,13 @@ public class SenderPattern {
 
         Pattern<MessageEvent, ?> senderPattern = Pattern
                 .<MessageEvent>begin("first")
-                .where(evt -> evt.getSender().getFirstName()== "Mike");
+                // use equals for strings!
+                .where(evt -> evt.getSender().getFirstName().equals("Mike"));
 
         // Create a pattern stream from our project pattern
         PatternStream<MessageEvent> senderPatternStream = CEP.pattern(
                 senderStream,
                 senderPattern);
-
-//            // Generate ProjectEvents for each matched project pattern
-//            DataStream<String>senderStream = senderPatternStream.select(
-//                    (Map<String, MessageEvent> pattern) -> {
-//                        SenderEvent senderEvent = (SenderEvent) pattern.get("first");
-//
-//                        System.out.print("senderStream");
-//
-//                        return senderEvent.getSender().getFirstName();
-//                    }
-//            );
 
         // Generate ProjectEvents for each matched project pattern
         DataStream<MessageEvent> result = senderPatternStream.select(
