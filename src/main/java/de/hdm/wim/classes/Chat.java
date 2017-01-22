@@ -1,6 +1,6 @@
 package de.hdm.wim.classes;
 
-import de.hdm.wim.events.MessageEvent;
+import de.hdm.wim.cep.events.MessageEvent;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
