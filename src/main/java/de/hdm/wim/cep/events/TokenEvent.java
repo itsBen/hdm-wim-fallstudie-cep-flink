@@ -13,6 +13,11 @@ public class TokenEvent{
     private Participant _sender;
     private int _messageId;
 
+//    static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//    static Gson gson = new GsonBuilder().create();
+
+
+
     /**
      * Instantiates a new Token event.
      *
@@ -81,6 +86,10 @@ public class TokenEvent{
         }
     }
 
+    public String GetSenderFirstName(){
+        return _sender.getFirstName();
+    }
+
     /**
      * Can equals boolean.
      *
@@ -98,8 +107,11 @@ public class TokenEvent{
 
     @Override
     public String toString() {
-        return "[TokenEvent] Message ID: " + _messageId
-                + " , Token: "  + _token
-                + " , Sender: " + _sender;
+        return "[TokenEvent]"
+                + " Message ID: '" + _messageId + "'"
+                + ", Token: '"  + _token + "'"
+                + ", Sender: '" + _sender.getFirstName() + "'" + "\n";
+
+//        return gson.toJson(this);
     }
 }
