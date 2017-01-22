@@ -1,10 +1,17 @@
 package de.hdm.wim.cep.patterns;
 
+import de.hdm.wim.cep.events.TokenDateEvent;
+import de.hdm.wim.cep.events.TokenEvent;
+import de.hdm.wim.helper.DateHelper;
 import org.apache.flink.cep.CEP;
 import org.apache.flink.cep.PatternStream;
 import org.apache.flink.cep.pattern.Pattern;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ben on 20.01.2017.
@@ -16,34 +23,44 @@ public class RelationToDatePattern {
      * @param env         the env
      * @param tokenStream the message stream
      */
-    public void run(StreamExecutionEnvironment env, DataStream<String> tokenStream ) {
+    public void run(StreamExecutionEnvironment env, DataStream<TokenEvent> tokenStream ) {
 
-        Pattern<String, ?> relationToDatePattern = Pattern
-                .<String>begin("first")
-                .where(tkn -> tkn.equals("next"))
-                .followedBy("date");
+        Pattern<TokenEvent, ?> relationToDatePattern = Pattern
+                .<TokenEvent>begin("time direction token")
+                .where(evt -> evt.get_token().equals("next")
+                        || evt.get_token().equals("previous")
+                        || evt.get_token().equals("past")
+                )
+                .next("day of week token")
+                .where(evt -> evt.get_token().equals("monday")
+                        || evt.get_token().equals("tuesday")
+                        || evt.get_token().equals("wednesday")
+                        || evt.get_token().equals("thursday")
+                        || evt.get_token().equals("friday")
+                        || evt.get_token().equals("saturday")
+                        || evt.get_token().equals("sunday")
+                );
+
 
         // Create a pattern stream from our project pattern
-        PatternStream<String>relationToDatePatternStream = CEP.pattern(
-                //messageStream.keyBy("_messageId"),
+        PatternStream<TokenEvent> relationToDatePatternStream = CEP.pattern(
                 tokenStream,
                 relationToDatePattern);
 
-//            // Generate ProjectEvents for each matched project pattern
-//            DataStream<String>senderStream = senderPatternStream.select(
-//                    (Map<String, MessageEvent> pattern) -> {
-//                        SenderEvent senderEvent = (SenderEvent) pattern.get("first");
-//
-//                        System.out.print("senderStream");
-//
-//                        return senderEvent.getSender().getFirstName();
-//                    }
-//            );
-
-        // Generate ProjectEvents for each matched project pattern
-        DataStream<String> result = relationToDatePatternStream.select(
+        // Generate TokenDateEvent for each matched date pattern
+        DataStream<TokenDateEvent> result = relationToDatePatternStream.select(
                 pattern -> {
-                    return pattern.get("first");
+
+                    LocalDate date = DateHelper.GetNextOrPrevDoW(
+                            pattern.get("time direction token").get_token(),
+                            pattern.get(("day of week token")).get_token()
+                    );
+
+                    List<TokenEvent> tokens = new ArrayList<>();
+                    tokens.add( pattern.get("time direction token"));
+                    tokens.add( pattern.get("day of week token"));
+
+                    return new TokenDateEvent(date, tokens);
                 }
         );
 
