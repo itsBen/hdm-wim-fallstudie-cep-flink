@@ -95,7 +95,18 @@ public class TokenDateEvent extends TokenEvent {
 
     @Override
     public String toString() {
-        return "[TokenDateEvent] Tokens: " + _tokens.toString()
-                + ", Date: " + _date;
+
+        // beautify tokens for presentation
+        // TODO: remove this
+        StringBuilder builder = new StringBuilder();
+        for(TokenEvent tkn:_tokens){
+            builder.append(tkn);
+        }
+
+        String beautifiedTokens = builder.toString();
+
+        return "[TokenDateEvent]" + "\n"
+                + "Date: " + _date + "\n"
+                + "Tokens: "+ "\n" + beautifiedTokens;
     }
 }
