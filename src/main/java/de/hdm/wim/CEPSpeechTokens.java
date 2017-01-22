@@ -1,9 +1,8 @@
 package de.hdm.wim;
 
-import de.hdm.wim.events.MessageEvent;
+import de.hdm.wim.cep.events.MessageEvent;
+import de.hdm.wim.cep.events.TokenEvent;
 import de.hdm.wim.cep.patterns.RelationToDatePattern;
-import de.hdm.wim.cep.patterns.SenderPattern;
-import de.hdm.wim.cep.patterns.TestPattern;
 import de.hdm.wim.cep.source.MessageEventSource;
 import de.hdm.wim.cep.source.TokenSource;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -33,16 +32,18 @@ public class CEPSpeechTokens {
                     .addSource(evtSrc);
 
             // create a DataStream of String from our tokenSource
-            DataStream<String> tokenStream = env
+            DataStream<TokenEvent> tokenStream = env
                     .addSource(tknSrc);
 
+            // run the test pattern
+//            TestPattern testPattern = new TestPattern();
+//            testPattern.run(env,messageStream);
 
-            TestPattern testPattern = new TestPattern();
-            testPattern.run(env,messageStream);
+            // run the sender pattern
+//            SenderPattern senderPattern = new SenderPattern();
+//            senderPattern.run(env,messageStream);
 
-            SenderPattern senderPattern = new SenderPattern();
-            senderPattern.run(env,messageStream);
-
+            // run the relation to date pattern
             RelationToDatePattern relationToDatePattern = new RelationToDatePattern();
             relationToDatePattern.run(env, tokenStream);
 
