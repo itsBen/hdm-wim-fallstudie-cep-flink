@@ -2,7 +2,8 @@ package de.hdm.wim.cep.source;
 
 import de.hdm.wim.classes.Chat;
 import de.hdm.wim.classes.Participant;
-import de.hdm.wim.events.MessageEvent;
+import de.hdm.wim.cep.events.MessageEvent;
+import de.hdm.wim.cep.events.TokenEvent;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 
 import java.time.LocalDateTime;
@@ -12,12 +13,12 @@ import java.util.List;
 /**
  * Created by Ben on 15.01.2017.
  */
-public class TokenSource implements SourceFunction<String> {
+public class TokenSource implements SourceFunction<TokenEvent> {
 
     private volatile boolean isRunning = true;
 
     @Override
-    public void run(SourceContext<String> sourceContext) throws Exception {
+    public void run(SourceContext<TokenEvent> sourceContext) throws Exception {
 
         // set up 2 participants
         final Participant participant1 = new Participant("Mike", "Turbo");
@@ -59,7 +60,7 @@ public class TokenSource implements SourceFunction<String> {
         chat.addMessage(new MessageEvent(tokens11, participant2, LocalDateTime.now(),11));
         chat.addMessage(new MessageEvent(tokens12, participant1, LocalDateTime.now(),12));
         chat.addMessage(new MessageEvent(tokens13, participant2, LocalDateTime.now(),13));
-        chat.addMessage(new MessageEvent(tokens14, participant1, LocalDateTime.now(),15));
+        chat.addMessage(new MessageEvent(tokens14, participant1, LocalDateTime.now(),14));
 
         int messageIndex = 0;
 
@@ -69,13 +70,18 @@ public class TokenSource implements SourceFunction<String> {
             MessageEvent chatMessage = chat.messages.get(messageIndex);
             int tokenCount = chatMessage.getTokens().size();
 
-            System.out.print("tokenCount: " + tokenCount);
-
             // add each token from message to sourceContext
-            for(int tokenIndex = 1; tokenIndex < tokenCount; tokenIndex++){
-                sourceContext.collect(chatMessage.getTokens().get(tokenIndex));
-            }
+            for(int tokenIndex = 0; tokenIndex < tokenCount; tokenIndex++){
 
+                TokenEvent tknEvt =
+                        new TokenEvent(
+                                chatMessage.getMessageId(),
+                                chatMessage.getTokens().get(tokenIndex),
+                                chatMessage.getSender()
+                        );
+
+                sourceContext.collect(tknEvt);
+            }
             messageIndex++;
         }
     }
