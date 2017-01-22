@@ -29,7 +29,9 @@
  - Beim Fehler mit dem `.classpath` das Projekt mit `mvn clean package` bereinigen
  
 Wenn der folgende Fehler auftritt, muss das package  mit `mvn clean package` neu gebuildet werden.
-`Exception in thread "main" org.apache.flink.api.common.functions.InvalidTypesException: The generic type parameters of 'Map' are missing. 
+
+```
+Exception in thread "main" org.apache.flink.api.common.functions.InvalidTypesException: The generic type parameters of 'Map' are missing. 
 It seems that your compiler has not stored them into the .class file. 
 Currently, only the Eclipse JDT compiler preserves the type information necessary to use the lambdas feature type-safely. 
 See the documentation for more information about how to compile jobs containing lambda expressions.
@@ -42,6 +44,6 @@ See the documentation for more information about how to compile jobs containing 
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
-	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)`
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)```
  
 
