@@ -10,21 +10,22 @@ import java.util.List;
 public class Message {
 
     /**
-     * The Message.
-     */
-    public String message;
-    /**
      * The Tokens.
      */
-    public List<String> tokens = new ArrayList<String>();
+    private List<String> _tokens = new ArrayList<String>();
     /**
      * The Sender.
      */
-    public Participant sender;
+    private Participant _sender;
     /**
      * The Timestamp.
      */
-    public LocalDateTime timestamp;
+    private LocalDateTime _timestamp;
+
+    /**
+     * The Message id.
+     */
+    private int _messageId;
 
     /**
      * Instantiates a new Message.
@@ -32,30 +33,19 @@ public class Message {
      * @param tokens    the tokens
      * @param sender    the sender
      * @param timestamp the timestamp
+     * @param messageId the message id
      */
-    public Message(List<String> tokens, Participant sender, LocalDateTime timestamp) {
-        this.tokens = tokens;
-        this.sender = sender;
-        this.timestamp = timestamp;
+    public Message(List<String> tokens, Participant sender, LocalDateTime timestamp, int messageId) {
+        this._tokens = tokens;
+        this._sender = sender;
+        this._timestamp = timestamp;
+        this._messageId = messageId;
     }
 
     /**
-     * Gets message.
-     *
-     * @return the message
+     * Instantiates a new Message.
      */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * Sets message.
-     *
-     * @param message the message
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    public Message(){}
 
     /**
      * Gets tokens.
@@ -63,7 +53,7 @@ public class Message {
      * @return the tokens
      */
     public List<String> getTokens() {
-        return tokens;
+        return _tokens;
     }
 
     /**
@@ -72,16 +62,7 @@ public class Message {
      * @param tokens the tokens
      */
     public void setTokens(List<String> tokens) {
-        this.tokens = tokens;
-    }
-
-    /**
-     * Add token.
-     *
-     * @param token the token
-     */
-    public void addToken(String token) {
-        this.tokens.add(token);
+        this._tokens = tokens;
     }
 
     /**
@@ -90,7 +71,7 @@ public class Message {
      * @return the sender
      */
     public Participant getSender() {
-        return sender;
+        return _sender;
     }
 
     /**
@@ -99,7 +80,7 @@ public class Message {
      * @param sender the sender
      */
     public void setSender(Participant sender) {
-        this.sender = sender;
+        this._sender = sender;
     }
 
     /**
@@ -108,7 +89,7 @@ public class Message {
      * @return the timestamp
      */
     public LocalDateTime getTimestamp() {
-        return timestamp;
+        return _timestamp;
     }
 
     /**
@@ -117,6 +98,24 @@ public class Message {
      * @param timestamp the timestamp
      */
     public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+        this._timestamp = timestamp;
+    }
+
+    /**
+     * Gets message id.
+     *
+     * @return the message id
+     */
+    public int getMessageId() {
+        return _messageId;
+    }
+
+    /**
+     * Sets message id.
+     *
+     * @param messageId the message id
+     */
+    public void setMessageId(int messageId) {
+        this._messageId = messageId;
     }
 }
