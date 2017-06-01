@@ -1,7 +1,6 @@
 package de.hdm.wim.events;
 
 import de.hdm.wim.classes.Participant;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -49,7 +48,7 @@ public class TopicEvent extends MessageEvent {
     public boolean equals(Object obj) {
         if (obj instanceof TopicEvent) {
             TopicEvent topicEvent = (TopicEvent) obj;
-            return topicEvent.canEquals(this) && super.equals(topicEvent) && _topic == topicEvent._topic;
+            return topicEvent.canEquals(this) && super.equals(topicEvent) && _topic.equals(topicEvent._topic);
         } else {
             return false;
         }

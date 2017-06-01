@@ -1,7 +1,6 @@
 package de.hdm.wim.cep.events;
 
 import com.google.gson.Gson;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class ComplexTokenEvent {
     /**
      * The Constant CALENDAR.
      */
-    public static final String CALENDAR = "google calender";
+    private static final String CALENDAR = "google calender";
 
     /**
      * The Constant COSTDOCUMENTS.
@@ -201,7 +200,7 @@ public class ComplexTokenEvent {
      *
      * @return the topic
      */
-    public ArrayList<String> getTopics() {
+    private ArrayList<String> getTopics() {
         return topics;
     }
 
@@ -221,7 +220,7 @@ public class ComplexTokenEvent {
      *
      * @return string name of the related project
      */
-    public String getRelatedToProject() {
+    private String getRelatedToProject() {
         return relatedToProject;
     }
 
@@ -239,7 +238,7 @@ public class ComplexTokenEvent {
      *
      * @return the relatedToTime
      */
-    public LocalTime getRelatedToTime() {
+    private LocalTime getRelatedToTime() {
         return relatedToTime;
     }
 
@@ -257,7 +256,7 @@ public class ComplexTokenEvent {
      *
      * @return the relatedToDate
      */
-    public LocalDate getRelatedToDate() {
+    private LocalDate getRelatedToDate() {
         return relatedToDate;
     }
 

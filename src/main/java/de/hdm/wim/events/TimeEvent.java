@@ -1,7 +1,6 @@
 package de.hdm.wim.events;
 
 import de.hdm.wim.classes.Participant;
-
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
